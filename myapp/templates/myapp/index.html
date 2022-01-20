@@ -24,6 +24,13 @@
 <body>
 <h1 class="h1">Sheeesh</h1>
 <div>
+    <form method="post" action="">
+        {% csrf_token %}
+        <input type="search" placeholder="Search ..." name="Pokemon">
+        <button type="submit">Search</button>
+    </form>
+</div>
+<div>
     <table class="table">
         <thead>
         <tr>
@@ -38,34 +45,40 @@
         <tr>
             <td>
                 {% if name_precedent != '' %}
-                    {% csrf_token %}
-                    <input type="hidden" value="{{ pok_precedent }}" name="Pokemon">
-                    <button type="submit" class="btn btn-link">◄  {{ name_precedent }}</button>
+                    <form method="post" action="">
+                        {% csrf_token %}
+                        <input type="hidden" value="{{ pok_precedent }}" name="Pokemon">
+                        <button type="submit" class="btn btn-link">◄  {{ name_precedent }}</button>
+                    </form>
+                    <img src="{{ sprite_precedent }}" alt="">
                 {% endif %}
             </td>
             <td>
-                {% if name_precedent != '' %}
+                <!--{% if name_precedent != '' %}
                     {% csrf_token %}
 
                     <img src="{{ sprite_precedent }}" alt="">
-                {% endif %}
+                {% endif %}-->
             </td>
             <td>
                 <p>{{ name }}</p>
                 <img src="{{ sprite }}" alt="">
             </td>
             <td>
-                {% if name_suivant != '' %}
-                    {% csrf_token %}
-                    <input type="hidden" value="{{ pok_suivant }}" name="Pokemon">
-                    <button type="submit" class="btn btn-link">{{ name_suivant }}  ►</button>
-                {% endif %}
-            </td>
-            <td>
-                {% if name_suivant != '' %}
+                <!--{% if name_suivant != '' %}
                     {% csrf_token %}
 
                     <img src="{{ sprite_suivant }}" alt="">
+                {% endif %}-->
+            </td>
+            <td>
+                {% if name_suivant != '' %}
+                <form method="post" action="">
+                    {% csrf_token %}
+                    <input type="hidden" value="{{ pok_suivant }}" name="Pokemon">
+                    <button type="submit" class="btn btn-link">{{ name_suivant }}  ►</button>
+                </form>
+                <img src="{{ sprite_suivant }}" alt="">
                 {% endif %}
             </td>
         </tr>
