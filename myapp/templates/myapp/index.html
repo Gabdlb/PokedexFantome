@@ -105,7 +105,15 @@
                 <th> Shiny :</th>
             </tr>
             <tr>
-                <td>{{ type }}</td>
+            <td>
+                {% for typ  in type %}
+
+                <p>{{ typ }}</p>
+
+                {% endfor %}
+            </td>
+
+                
                 <td>{{ poids }} kg</td>
                 <td>{{ taille }} m</td>
                 <td><img src="{{ shiny }}" alt=""></td>

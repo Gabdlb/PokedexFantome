@@ -1,3 +1,4 @@
+from tkinter.font import names
 from django.shortcuts import render
 from django.shortcuts import render
 import random
@@ -9,6 +10,7 @@ def index(request):
     url = 'https://pokeapi.co/api/v2/pokemon/?offset=0&limit=151'
     r = re.get(url)
     response = r.json()
+    
     if request.method == 'POST':
         if request.POST.get("Pokemon_Equipe"):
             if request.POST.get("Pokemon") != "0" :
@@ -23,7 +25,7 @@ def index(request):
             context = {'list':EquipePokemon, 'ArrayEquipe':ArrayEquipe}
             return render(request, 'myapp/equipe.html',context)
 
-    return render(request, 'myapp/index.html', response)
+    return render(request, 'myapp/equipe.html', response)
 
 
 def find_pok_order(name):
@@ -43,11 +45,12 @@ def pokemon(pok_order):
         return
     url = "https://pokeapi.co/api/v2/pokemon/"
     urlname = "https://pokeapi.co/api/v2/pokemon-species/"
+    urltype = "https://pokeapi.co/api/v2/type/"
     name = ''
     poids = ''
     image = ''
     sprite = ''
-    type = ''
+    typeFR = ''
     taille = ''
     shiny = ''
     if isinstance(pok_order, int):
@@ -59,12 +62,19 @@ def pokemon(pok_order):
             name = responsename['names'][4]['name']
             image = response['sprites']['other']['official-artwork']['front_default']
             sprite = response['sprites']['front_default']
-            type = response['types'][0]['type']['name']
+            types = response['types']
             poids = int(response['weight']) / 10
             taille = int(response['height']) / 10
             shiny = response['sprites']['front_shiny']
 
-    pokemon_list = {'name': name, 'image': image, 'type': type, 'sprite': sprite, 'poids': poids, 'taille': taille,
+            # Traduction des types en francais
+            typeFR = []
+            for type in types:
+                rtype = re.get(urltype + str(type['type']['name']))
+                responsetype = rtype.json()
+                typeFR.append(responsetype['names'][3]['name'])
+
+    pokemon_list = {'name': name, 'image': image, 'type': typeFR, 'sprite': sprite, 'poids': poids, 'taille': taille,
                     'shiny': shiny}
 
     return pokemon_list
