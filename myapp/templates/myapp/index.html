@@ -48,7 +48,7 @@
                     <form method="post" action="">
                         {% csrf_token %}
                         <input type="hidden" value="{{ pok_precedent }}" name="Pokemon">
-                        <button type="submit" class="btn btn-link">◄  {{ name_precedent }}</button>
+                        <button type="submit" class="btn btn-link">◄ {{ name_precedent }}</button>
                     </form>
                     <img src="{{ sprite_precedent }}" alt="">
                 {% endif %}
@@ -73,12 +73,12 @@
             </td>
             <td>
                 {% if name_suivant != '' %}
-                <form method="post" action="">
-                    {% csrf_token %}
-                    <input type="hidden" value="{{ pok_suivant }}" name="Pokemon">
-                    <button type="submit" class="btn btn-link">{{ name_suivant }}  ►</button>
-                </form>
-                <img src="{{ sprite_suivant }}" alt="">
+                    <form method="post" action="">
+                        {% csrf_token %}
+                        <input type="hidden" value="{{ pok_suivant }}" name="Pokemon">
+                        <button type="submit" class="btn btn-link">{{ name_suivant }} ►</button>
+                    </form>
+                    <img src="{{ sprite_suivant }}" alt="">
                 {% endif %}
             </td>
         </tr>
@@ -91,6 +91,23 @@
             <h1>{{ name }}</h1>
             <img src="{{ image }}" alt="">
         </div>
+        <div class="col">
+            <br><br><br><br><br><br>
+            <form action="" method="post">
+                {% csrf_token %}
+                <input type="hidden" value="0" name="Pokemon">
+                <input type="hidden" name="Pokemon_Equipe" value="0">
+                <button class="btn btn-primary" type="submit"> Voir votre équipe</button>
+            </form>
+            <br>
+            <form action="" method="post">
+                {% csrf_token %}
+                <input type="hidden" value="{{ pok_order }}" name="Pokemon">
+                <input type="hidden" name="Pokemon_Equipe" value="{{ pok_order }}">
+                <button class="btn btn-primary" type="submit"> Ajouter ce pokémon à l'équipe</button>
+            </form>
+
+        </div>
     </div>
     <div>
         <table class="table">
@@ -101,7 +118,14 @@
                 <th> Shiny :</th>
             </tr>
             <tr>
-                <td>{{ type }}</td>
+                <td>
+                    {% for typ  in type %}
+
+                        <p>{{ typ }}</p>
+
+                    {% endfor %}
+                </td>
+
                 <td>{{ poids }} kg</td>
                 <td>{{ taille }} m</td>
                 <td><img src="{{ shiny }}" alt=""></td>
