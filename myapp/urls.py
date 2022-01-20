@@ -18,5 +18,6 @@ from . import views
 
 urlpatterns = [
     #ici c le path principale el le index c par rapport à ma methode donc à changer qd yaura la methode global daffichage
-    path('', views.index, name="index"),
+    path('', views.home, name="index"),
+    path('equipe/', views.equipe, name="accueil"),
 ]

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Equipe pokemon</title>
+</head>
+<body>
+    
+    <form action="/" method="post">
+        {% csrf_token %}
+        <button class="btn btn-outline-primary" type="submit">retour à la liste</button>
+    </form>
+    <h1 class="text-center">Ton equipe pokemon : </h1>
+    <div>
+        {% for pokemon in ArrayEquipe %}
+        <div class="card text-dark bg-light mb-3 border-success mb-3 color">
+            {% if pokemon.image %}
+                <img class="card-img-top" src="{{pokemon.image}}" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">{{pokemon.name}}</h5>
+                    <p class="card-text">Poids : {{ pokemon.poids }} kg, Taille : {{ pokemon.taille }} m</p>
+                    <p class="card-text">Types : </p>
+                            <p class="card-text" style="text-align:center">
+                                {{ type }}
+                            </p>
+                        </div>
+                        
+                </div>
+            {% else %}
+            <img class="card-img-top" src="https://studio.cults3d.com/cpVLSLBgXftw_KujSHqr_VFILaI=/516x516/https://files.cults3d.com/uploaders/13859964/illustration-file/9d9c1945-5499-463e-92ca-5b5954e03b41/No%20Pokemon%20hunting.png" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">pas encore de pokemon</h5>
+                </div>
+            {% endif %}
+            {% endfor %}
+    </div>
+</body>
+</html>
