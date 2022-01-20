@@ -48,7 +48,7 @@
                     <form method="post" action="">
                         {% csrf_token %}
                         <input type="hidden" value="{{ pok_precedent }}" name="Pokemon">
-                        <button type="submit" class="btn btn-link">◄ {{ name_precedent }}</button>
+                        <button type="submit" class="btn btn-link">◄ {{ pok_precedent }} - {{ name_precedent }}</button>
                     </form>
                     <img src="{{ sprite_precedent }}" alt="">
                 {% endif %}
@@ -61,7 +61,7 @@
                 {% endif %}-->
             </td>
             <td>
-                <p>{{ name }}</p>
+                <p>{{ pok_order }} - {{ name }}</p>
                 <img src="{{ sprite }}" alt="">
             </td>
             <td>
@@ -76,7 +76,7 @@
                     <form method="post" action="">
                         {% csrf_token %}
                         <input type="hidden" value="{{ pok_suivant }}" name="Pokemon">
-                        <button type="submit" class="btn btn-link">{{ name_suivant }} ►</button>
+                        <button type="submit" class="btn btn-link">{{ pok_suivant }} - {{ name_suivant }} ►</button>
                     </form>
                     <img src="{{ sprite_suivant }}" alt="">
                 {% endif %}

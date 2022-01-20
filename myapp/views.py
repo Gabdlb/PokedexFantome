@@ -38,9 +38,6 @@ def find_pok_order(name):
 
 
 def pokemon(pok_order):
-    if isinstance(pok_order, str):
-        if pok_order.isdigit():
-            pok_order = int(pok_order)
     if pok_order is None:
         return
     url = "https://pokeapi.co/api/v2/pokemon/"
@@ -53,26 +50,26 @@ def pokemon(pok_order):
     typeFR = ''
     taille = ''
     shiny = ''
-    if isinstance(pok_order, int):
-        if 1 <= pok_order <= 151:
-            r = re.get(url + str(pok_order))
-            rname = re.get(urlname + str(pok_order))
-            response = r.json()
-            responsename = rname.json()
-            name = responsename['names'][4]['name']
-            image = response['sprites']['other']['official-artwork']['front_default']
-            sprite = response['sprites']['front_default']
-            types = response['types']
-            poids = int(response['weight']) / 10
-            taille = int(response['height']) / 10
-            shiny = response['sprites']['front_shiny']
 
-            # Traduction des types en francais
-            typeFR = []
-            for type in types:
-                rtype = re.get(urltype + str(type['type']['name']))
-                responsetype = rtype.json()
-                typeFR.append(responsetype['names'][3]['name'])
+    if 1 <= pok_order <= 151:
+        r = re.get(url + str(pok_order))
+        rname = re.get(urlname + str(pok_order))
+        response = r.json()
+        responsename = rname.json()
+        name = responsename['names'][4]['name']
+        image = response['sprites']['other']['official-artwork']['front_default']
+        sprite = response['sprites']['front_default']
+        types = response['types']
+        poids = int(response['weight']) / 10
+        taille = int(response['height']) / 10
+        shiny = response['sprites']['front_shiny']
+
+        # Traduction des types en francais
+        typeFR = []
+        for type in types:
+            rtype = re.get(urltype + str(type['type']['name']))
+            responsetype = rtype.json()
+            typeFR.append(responsetype['names'][3]['name'])
 
     pokemon_list = {'name': name, 'image': image, 'type': typeFR, 'sprite': sprite, 'poids': poids, 'taille': taille,
                     'shiny': shiny}
