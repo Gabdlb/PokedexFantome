@@ -33,7 +33,7 @@ On lance le projet avec la commande suivante :
 ```
 py ./manage.py runserver
 
-### Il faut faire la migration avant de pouvoir démarrer le projet
+# Il faut faire la migration avant de pouvoir démarrer le projet
 py manage.py migrate
 ```
 
