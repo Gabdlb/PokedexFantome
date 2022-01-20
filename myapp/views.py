@@ -31,6 +31,7 @@ def pokemon(pok_order):
     if pok_order is None:
         return
     url = "https://pokeapi.co/api/v2/pokemon/"
+    urlname = "https://pokeapi.co/api/v2/pokemon-species/"
     name = ''
     poids = ''
     image = ''
@@ -41,8 +42,10 @@ def pokemon(pok_order):
     if isinstance(pok_order, int):
         if 1 <= pok_order <= 151:
             r = re.get(url + str(pok_order))
+            rname = re.get(urlname +str(pok_order))
             response = r.json()
-            name = response['forms'][0]['name']
+            responsename=rname.json()
+            name = responsename['names'][4]['name']
             image = response['sprites']['other']['official-artwork']['front_default']
             sprite = response['sprites']['front_default']
             type = response['types'][0]['type']['name']
@@ -57,10 +60,17 @@ def pokemon(pok_order):
 
 
 def home(request):
-    pok_order = find_pok_order(request.POST.get("Pokemon"))
+    try:
+        pok_order = find_pok_order(request.POST.get("Pokemon"))
+    except:
+        pok_order = 1
     # pok_order = 1
-    pok_precedent = 0
-    pok_suivant = 0
+    pok_precedent = pok_order - 1
+    if pok_precedent < 1:
+        pok_precedent = 0 
+    pok_suivant = pok_order + 1
+    if pok_suivant > 151 :
+        pok_suivant = 0
     tab_pokemon = pokemon(pok_order)
     tab_precedent = pokemon(pok_precedent)
     tab_suivant = pokemon(pok_suivant)
@@ -71,3 +81,4 @@ def home(request):
                'pok_order': pok_order, 'pok_precedent': pok_precedent, 'pok_suivant': pok_suivant}
 
     return render(request, 'myapp/index.html', context)
+
