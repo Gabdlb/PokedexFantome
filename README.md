@@ -12,18 +12,18 @@ Notre pokedex utilise l'API [pokeapi](https://pokeapi.co/).
 
 Après avoir récuperer notre repos git, il faut créer un environnement virtuel:
 ```
-py -m venv Pokedex
+py -m venv PokedexFantome
 ```
 
 On active l'environnement virtuel : 
 ```
-./Pokedex/Scripts/activate
+./PokedexFantome/Scripts/activate
 ```
 
 On installe tous les paquets nécessaires au bon fonctionnement du projet : 
 ```
 pip install django
-cd ./Projet-Pokedex/DjangoPokedex/
+cd ./ProjetFantome/
 pip install requests
 ```
 
