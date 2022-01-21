@@ -23,8 +23,8 @@
 
 </head>
 <body>
-<h1 class=""><i class="far fa-ghost"></i>  Pokedex Fantôme  <i class="far fa-ghost"></i></h1>
-<h2>Hugo - Théophile - Gabriel</h2>
+<h1 class="text-center align-middle"><i class="far fa-ghost"></i> Pokedex Fantôme <i class="far fa-ghost"></i></h1>
+<h4 class="text-center align-middle">Hugo Divet - Théophile Farvacque - Gabriel de la Biche</h4>
 
 <div class="">
     <table class="table table-responsive">
@@ -86,68 +86,70 @@
         </tbody>
     </table>
 </div>
-<div class="container input-group">
-    <form method="post" action="">
-        {% csrf_token %}
-
-        <input type="search" placeholder="Search ..." name="Pokemon" class="mr-sm-2">
-        <button type="submit" class="btn btn-success my-2 my-sm-0"><i class="fas fa-search"></i></button>
-    </form>
-</div>
 <div class="container">
-    <div>
-        <div class="col">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+            <form method="post" action="">
+                {% csrf_token %}
+
+                <input type="search" placeholder="Search ..." name="Pokemon" class="mr-sm-2">
+                <button type="submit" class="btn btn-success my-2 my-sm-0"><i class="fas fa-search"></i></button>
+            </form>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
             <form action="" method="post">
                 {% csrf_token %}
                 <input type="hidden" value="0" name="Pokemon">
                 <input type="hidden" name="Pokemon_Equipe" value="0">
-                <button class="btn btn-primary" type="submit"> Voir votre équipe</button>
+                <button class="btn btn-primary" type="submit"><i class="fas fa-eye"></i> Voir votre équipe</button>
             </form>
             <br>
             <form action="" method="post">
                 {% csrf_token %}
                 <input type="hidden" value="{{ pok_order }}" name="Pokemon">
                 <input type="hidden" name="Pokemon_Equipe" value="{{ pok_order }}">
-                <button class="btn btn-primary" type="submit"> Ajouter ce pokémon à l'équipe</button>
+                <button class="btn btn-primary" type="submit"><i class="fas fa-plus"></i> Ajouter ce pokémon à
+                    l'équipe
+                </button>
             </form>
-
         </div>
     </div>
-    <div class="container">
-        <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                <h1>{{ name }}</h1>
-                <img src="{{ image }}" alt="">
-            </div>
+</div>
+<div class="container">
 
-            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                <h1>Statistiques : </h1>
-                <br><br>
-                <table class="table table-bordered table-hover table-responsive ">
-                    <tr>
-                        <th> Types :</th>
-                        <td>
-                            {% for typ  in type %}
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+            <h1>{{ name }}</h1>
+            <img src="{{ image }}" alt="">
+        </div>
 
-                                <p>{{ typ }}</p>
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+            <h1>Statistiques : </h1>
+            <br><br>
+            <table class="table table-bordered table-hover table-responsive ">
+                <tr>
+                    <th> Types :</th>
+                    <td>
+                        {% for typ  in type %}
 
-                            {% endfor %}
-                        </td>
-                    </tr>
-                    <tr>
-                        <th> Poids :</th>
-                        <td>{{ poids }} kg</td>
-                    </tr>
-                    <tr>
-                        <th> Taille :</th>
-                        <td>{{ taille }} m</td>
-                    </tr>
-                    <tr>
-                        <th> Shiny :</th>
-                        <td><img src="{{ shiny }}" alt=""></td>
-                    </tr>
-                </table>
-            </div>
+                            <p>{{ typ }}</p>
+
+                        {% endfor %}
+                    </td>
+                </tr>
+                <tr>
+                    <th> Poids :</th>
+                    <td>{{ poids }} kg</td>
+                </tr>
+                <tr>
+                    <th> Taille :</th>
+                    <td>{{ taille }} m</td>
+                </tr>
+                <tr>
+                    <th> Shiny :</th>
+                    <td><img src="{{ shiny }}" alt=""></td>
+                </tr>
+            </table>
         </div>
     </div>
 </div>
