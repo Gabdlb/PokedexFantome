@@ -23,7 +23,7 @@ On active l'environnement virtuel :
 On installe tous les paquets nécessaires au bon fonctionnement du projet : 
 ```
 pip install django
-cd ./ProjetFantome/
+cd ./PokedexFantome/
 pip install requests
 ```
 
